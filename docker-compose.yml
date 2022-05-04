@@ -1,0 +1,58 @@
+version: '3.9'
+
+services:
+   consul:
+        image: consul:latest
+        command: consul agent -dev -log-level=warn -ui -client=0.0.0.0
+        hostname: consul
+        container_name: consul
+        networks:
+            - common_network
+
+   novasaasadminapi1:
+        container_name: novasaasadminapi1
+        image: novasaasadminapi:latest
+        restart: on-failure
+        hostname: novasaasadminapi1
+        build:
+            context: .
+            dockerfile: src/Nova.SaaS.Admin.Api/Dockerfile
+        networks:
+            - common_network
+
+   novasaasadminapi2:
+        container_name: novasaasadminapi2
+        image: novasaasadminapi:latest
+        restart: on-failure
+        hostname: novasaasadminapi2
+        build:
+            context: .
+            dockerfile: src/Nova.SaaS.Admin.Api/Dockerfile
+        networks:
+            - common_network
+
+   novasaasadminapi3:
+        container_name: novasaasadminapi3
+        image: novasaasadminapi:latest
+        restart: on-failure
+        hostname: novasaasadminapi3
+        build:
+            context: .
+            dockerfile: src/Nova.SaaS.Admin.Api/Dockerfile
+        networks:
+            - common_network
+
+   novasaasservicesgateway:
+        container_name: novasaasservicesgateway
+        image: novasaasservicesgateway:latest
+        restart: on-failure
+        hostname: novasaasservicesgateway
+        build:
+            context: .
+            dockerfile: src/Nova.SaaS.Services.Gateway/Dockerfile
+        networks:
+            - common_network
+
+networks:
+    common_network:
+        driver: bridge
