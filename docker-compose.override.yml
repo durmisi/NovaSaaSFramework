@@ -4,14 +4,27 @@ services:
     consul:
         ports:
              - "8500:8500"
-
-    novasaasadminapi1:
+    
+    nacos:
+        ports:
+            - "8848:8848"
+            #- "9848:9848"
+    
+    prometheus:
+        ports:
+            - "9090:9090"
+    
+    grafana:
+        ports:
+          - 3000:3000
+        
+    nova.saas.admin.api1:
         environment:
           - ASPNETCORE_ENVIRONMENT=Development
-          - ServiceConfig__Id=novasaasadminapi-9100
-          - ServiceConfig__Name=novasaasadminapi
+          - ServiceConfig__Id=nova.saas.admin.api-9100
+          - ServiceConfig__Name=nova.saas.admin.api
           - ServiceConfig__DiscoveryAddress=http://consul:8500
-          - ServiceConfig__Address=novasaasadminapi1
+          - ServiceConfig__Address=nova.saas.admin.api1
           - ServiceConfig__Port=80
           - ServiceConfig__HealthCheckEndPoint=healthcheck
         ports:
@@ -19,13 +32,13 @@ services:
         depends_on:
             - consul
 
-    novasaasadminapi2:
+    nova.saas.admin.api2:
         environment:
           - ASPNETCORE_ENVIRONMENT=Development
-          - ServiceConfig__Id=novasaasadminapi-9200
-          - ServiceConfig__Name=novasaasadminapi
+          - ServiceConfig__Id=nova.saas.admin.api-9200
+          - ServiceConfig__Name=nova.saas.admin.api
           - ServiceConfig__DiscoveryAddress=http://consul:8500
-          - ServiceConfig__Address=novasaasadminapi2
+          - ServiceConfig__Address=nova.saas.admin.api2
           - ServiceConfig__Port=80
           - ServiceConfig__HealthCheckEndPoint=healthcheck
         ports:
@@ -33,13 +46,13 @@ services:
         depends_on:
             - consul
 
-    novasaasadminapi3:
+    nova.saas.admin.api3:
         environment:
           - ASPNETCORE_ENVIRONMENT=Development
-          - ServiceConfig__Id=novasaasadminapi-9300
-          - ServiceConfig__Name=novasaasadminapi
+          - ServiceConfig__Id=nova.saas.admin.api-9300
+          - ServiceConfig__Name=nova.saas.admin.api
           - ServiceConfig__DiscoveryAddress=http://consul:8500
-          - ServiceConfig__Address=novasaasadminapi3
+          - ServiceConfig__Address=nova.saas.admin.api3
           - ServiceConfig__Port=80
           - ServiceConfig__HealthCheckEndPoint=healthcheck
         ports:
@@ -47,7 +60,7 @@ services:
         depends_on:
             - consul
 
-    novasaasservicesgateway:
+    nova.saas.api.gateway:
         environment:
             - ASPNETCORE_ENVIRONMENT=Development
             - ASPNETCORE_URLS=http://+:80
@@ -55,6 +68,25 @@ services:
             - 9500:80
         depends_on:
             - consul
-            - novasaasadminapi1
-            - novasaasadminapi2
-            - novasaasadminapi3
+            - nova.saas.admin.api1
+            - nova.saas.admin.api2
+            - nova.saas.admin.api3
+
+    nova.saas.admin.app1:
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Production
+            - ASPNETCORE_URLS=http://+:80
+        ports:
+            - 9600:80
+        depends_on:
+            - nacos
+
+    nova.saas.app.gateway:
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Production
+            - ASPNETCORE_URLS=http://+:80
+        ports:
+            - 9700:80
+        depends_on:
+             - nacos
+        #    - nova.saas.admin.app1

@@ -8,48 +8,99 @@ services:
         container_name: consul
         networks:
             - common_network
-
-   novasaasadminapi1:
-        container_name: novasaasadminapi1
-        image: novasaasadminapi:latest
-        restart: on-failure
-        hostname: novasaasadminapi1
-        build:
-            context: .
-            dockerfile: src/Nova.SaaS.Admin.Api/Dockerfile
+   nacos:
+        image: nacos/nacos-server:${NACOS_VERSION}
+        container_name: nacos-standalone
+        environment:
+            - PREFER_HOST_MODE=hostname
+            - MODE=standalone
+        volumes:
+            - ./docker/dist/standalone-logs/:/home/nacos/logs
+            - ./docker/dist/init.d/custom.properties:/home/nacos/init.d/custom.properties
         networks:
             - common_network
 
-   novasaasadminapi2:
-        container_name: novasaasadminapi2
-        image: novasaasadminapi:latest
+   prometheus:
+        container_name: prometheus
+        image: prom/prometheus:latest
+        volumes:
+            - ./docker/prometheus/prometheus-standalone.yaml:/etc/prometheus/prometheus.yml
+        depends_on:
+            - nacos
         restart: on-failure
-        hostname: novasaasadminapi2
-        build:
-            context: .
-            dockerfile: src/Nova.SaaS.Admin.Api/Dockerfile
         networks:
             - common_network
 
-   novasaasadminapi3:
-        container_name: novasaasadminapi3
-        image: novasaasadminapi:latest
+   grafana:
+        container_name: grafana
+        image: grafana/grafana:latest
         restart: on-failure
-        hostname: novasaasadminapi3
-        build:
-            context: .
-            dockerfile: src/Nova.SaaS.Admin.Api/Dockerfile
         networks:
             - common_network
 
-   novasaasservicesgateway:
-        container_name: novasaasservicesgateway
-        image: novasaasservicesgateway:latest
+   nova.saas.admin.api1:
+        container_name: nova.saas.admin.api1
+        image: nova.saas.admin.api:latest
         restart: on-failure
-        hostname: novasaasservicesgateway
+        hostname: nova.saas.admin.api1
         build:
             context: .
-            dockerfile: src/Nova.SaaS.Services.Gateway/Dockerfile
+            dockerfile: ./src/backend/Nova.SaaS.Admin.Api/Dockerfile
+        networks:
+            - common_network
+
+   nova.saas.admin.api2:
+        container_name: nova.saas.admin.api2
+        image: nova.saas.admin.api:latest
+        restart: on-failure
+        hostname: nova.saas.admin.api2
+        build:
+            context: .
+            dockerfile: ./src/backend/Nova.SaaS.Admin.Api/Dockerfile
+        networks:
+            - common_network
+
+   nova.saas.admin.api3:
+        container_name: nova.saas.admin.api3
+        image: nova.saas.admin.api:latest
+        restart: on-failure
+        hostname: nova.saas.admin.api3
+        build:
+            context: .
+            dockerfile: ./src/backend/Nova.SaaS.Admin.Api/Dockerfile
+        networks:
+            - common_network
+
+   nova.saas.api.gateway:
+        container_name: nova.saas.api.gateway
+        image: nova.saas.api.gateway:latest
+        restart: on-failure
+        hostname: nova.saas.api.gateway
+        build:
+            context: .
+            dockerfile: ./src/backend/Nova.SaaS.Api.Gateway/Dockerfile
+        networks:
+            - common_network
+
+   nova.saas.admin.app1:
+        container_name: nova.saas.admin.app1
+        image: nova.saas.admin.app:latest
+        restart: on-failure
+        hostname: nova.saas.admin.app1
+        build:
+            context: .
+            dockerfile: ./src/frontend/Nova.SaaS.Admin.App/Dockerfile
+        networks:
+            - common_network
+
+   nova.saas.app.gateway:
+        container_name: nova.saas.app.gateway
+        image: nova.saas.app.gateway:latest
+        restart: on-failure
+        hostname: nova.saas.app.gateway
+        build:
+            context: .
+            dockerfile: ./src/frontend/Nova.SaaS.App.Gateway/Dockerfile
         networks:
             - common_network
 

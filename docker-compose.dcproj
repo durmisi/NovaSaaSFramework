@@ -6,7 +6,9 @@
     <ProjectGuid>439e178d-b6f8-4cdb-81f2-6c66ff164c84</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/</DockerServiceUrl>
-    <DockerServiceName>novasaasservicesgateway</DockerServiceName>
+    <DockerServiceName>nova.saas.app.gateway</DockerServiceName>
+	  <Configurations>Debug;Release;staging;production</Configurations>
+      <DockerComposeBaseFilePath>.\docker-compose</DockerComposeBaseFilePath>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.override.yml">
