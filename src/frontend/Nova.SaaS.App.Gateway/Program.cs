@@ -10,19 +10,18 @@ builder.Services.AddNacosV2Naming(x =>
     };
 
     x.EndPoint = "";
-
     x.Namespace = "yarp";
-
     x.UserName = "nacos";
-
     x.Password = "nacos";
 
     // swich to use http or rpc
     x.NamingUseRpc = true;
 });
 
-builder.Services.AddReverseProxy()
-    .AddNacosServiceDiscovery(
+
+var proxyBuilder = builder.Services.AddReverseProxy();
+
+proxyBuilder.AddNacosServiceDiscovery(
     groupNames: "DEFAULT_GROUP",
     percount: 100,
     enableAutoRefreshService: true,
@@ -41,6 +40,16 @@ app.UseEndpoints(endpoints =>
     });
 
     endpoints.MapReverseProxy();
+
+    endpoints.Map("/{**catch-all}", async httpContext =>
+    {
+        if (httpContext.Request.Path != "/")
+        {
+            return;
+        }
+
+        httpContext.Response.Redirect("http://localhost:9700/admin");
+    });
 });
 
 app.Run();

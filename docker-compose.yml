@@ -93,6 +93,17 @@ services:
         networks:
             - common_network
 
+   nova.saas.admin.app2:
+        container_name: nova.saas.admin.app2
+        image: nova.saas.admin.app:latest
+        restart: on-failure
+        hostname: nova.saas.admin.app2
+        build:
+            context: .
+            dockerfile: ./src/frontend/Nova.SaaS.Admin.App/Dockerfile
+        networks:
+            - common_network
+
    nova.saas.app.gateway:
         container_name: nova.saas.app.gateway
         image: nova.saas.app.gateway:latest

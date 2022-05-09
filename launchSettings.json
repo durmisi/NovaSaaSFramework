@@ -14,7 +14,8 @@
         "nova.saas.admin.api2": "StartDebugging",
         "nova.saas.admin.api3": "StartDebugging",
         "nova.saas.app.gateway": "StartDebugging",
-        "nova.saas.admin.app1": "StartDebugging"
+        "nova.saas.admin.app1": "StartDebugging",
+        "nova.saas.admin.app2": "StartDebugging"
       }
     }
   }

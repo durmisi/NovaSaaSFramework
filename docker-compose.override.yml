@@ -81,6 +81,15 @@ services:
         depends_on:
             - nacos
 
+    nova.saas.admin.app2:
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Production
+            - ASPNETCORE_URLS=http://+:80
+        ports:
+            - 9650:80
+        depends_on:
+            - nacos
+
     nova.saas.app.gateway:
         environment:
             - ASPNETCORE_ENVIRONMENT=Production
