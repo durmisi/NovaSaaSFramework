@@ -32,7 +32,7 @@ namespace Nova.Api.Core.ServiceDiscovery
                 {
                     DeregisterCriticalServiceAfter = TimeSpan.FromSeconds(5),
                     Interval = TimeSpan.FromSeconds(15),
-                    HTTP = $"http://{_config.Address}:{_config.Port}/api/values/{_config.HealthCheckEndPoint}",
+                    HTTP = $"http://{_config.Address}:{_config.Port}/api/{_config.HealthCheckEndPoint}",
                     Timeout = TimeSpan.FromSeconds(5)
                 }
             };
