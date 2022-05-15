@@ -37,6 +37,32 @@ services:
         restart: on-failure
         networks:
             - common_network
+   
+   mongodb:
+        container_name: mongodb
+        image: mongo:latest
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: "root"
+            MONGO_INITDB_ROOT_PASSWORD: "myBigDevPassword!"
+        volumes:
+            - ./docker/dist/mongo-volume:/data/db
+        ports:
+            - "27017:27017"
+        networks:
+            - common_network
+
+   mongogui:
+        container_name: "mongogui"
+        image: ugleiton/mongo-gui
+        restart: always
+        ports:
+            - "4321:4321"
+        environment:
+            - MONGO_URL=mongodb://root:myBigDevPassword!@mongodb:27017
+        depends_on:
+            - mongodb
+        networks:
+            - common_network
 
    nova.saas.admin.api1:
         container_name: nova.saas.admin.api1
