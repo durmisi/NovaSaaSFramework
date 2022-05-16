@@ -1,3 +1,4 @@
+using Microsoft.Extensions.FileProviders;
 using Nacos.AspNetCore.V2;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +21,11 @@ if (!app.Environment.IsDevelopment())
 
 //app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions()
+{
+    FileProvider = new PhysicalFileProvider(
+            Path.Combine(Directory.GetCurrentDirectory(), @"client/build")),
+});
 
 app.UseRouting();
 
