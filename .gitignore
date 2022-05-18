@@ -337,3 +337,7 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+
+
+docker/dist
+docker/dist/**
