@@ -43,9 +43,12 @@ app.UseEndpoints(endpoints =>
 
     endpoints.Map("/{**catch-all}", async httpContext =>
     {
-        if (httpContext.Request.Path != "/")
+        if (httpContext.Request.Path.HasValue)
         {
-            return;
+            if (httpContext.Request.Path != "/" || httpContext.Request.Path.Value.Contains("livereload"))
+            {
+                return;
+            }
         }
 
         httpContext.Response.Redirect("http://localhost:9700/admin");

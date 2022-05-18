@@ -5,6 +5,8 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
+ENV DOTNET_USE_POLLING_FILE_WATCHER 1
+
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["src/frontend/Nova.SaaS.Admin.App/Nova.SaaS.Admin.App.csproj", "src/frontend/Nova.SaaS.Admin.App/"]

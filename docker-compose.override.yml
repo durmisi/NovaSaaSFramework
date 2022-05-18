@@ -74,7 +74,7 @@ services:
 
     nova.saas.admin.app1:
         environment:
-            - ASPNETCORE_ENVIRONMENT=Production
+            - ASPNETCORE_ENVIRONMENT=Development
             - ASPNETCORE_URLS=http://+:80
         ports:
             - 9600:80
@@ -83,7 +83,7 @@ services:
 
     nova.saas.admin.app2:
         environment:
-            - ASPNETCORE_ENVIRONMENT=Production
+            - ASPNETCORE_ENVIRONMENT=Development
             - ASPNETCORE_URLS=http://+:80
         ports:
             - 9650:80
@@ -92,7 +92,7 @@ services:
 
     nova.saas.app.gateway:
         environment:
-            - ASPNETCORE_ENVIRONMENT=Production
+            - ASPNETCORE_ENVIRONMENT=Development
             - ASPNETCORE_URLS=http://+:80
         ports:
             - 9700:80
