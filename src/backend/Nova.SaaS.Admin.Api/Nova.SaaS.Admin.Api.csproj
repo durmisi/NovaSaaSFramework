@@ -10,6 +10,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<InternalsVisibleTo Include="Nova.SaaS.Admin.Api.Tests"/>
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="FastEndpoints" Version="4.1.0" />
 		<PackageReference Include="FastEndpoints.Security" Version="4.1.0" />
 		<PackageReference Include="FastEndpoints.Swagger" Version="4.1.0" />
