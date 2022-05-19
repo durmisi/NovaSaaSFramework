@@ -49,7 +49,12 @@ builder.Host
 
 builder.Services.AddFastEndpoints();
 
-builder.Services.AddConsul(configuration.GetServiceConfig());
+var consulConfiguration = configuration.GetServiceConfig();
+if (consulConfiguration != null)
+{
+    builder.Services.AddConsul(consulConfiguration);
+}
+
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();

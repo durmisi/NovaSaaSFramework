@@ -13,6 +13,11 @@ namespace Nova.Api.Core.ServiceDiscovery
                 throw new ArgumentNullException(nameof(configuration));
             }
 
+            if (string.IsNullOrEmpty(configuration.GetValue<string>("ServiceConfig:Name")))
+            {
+                return null;
+            }
+
             var serviceConfig = new ServiceConfig
             {
                 Id = configuration.GetValue<string>("ServiceConfig:Id"),
