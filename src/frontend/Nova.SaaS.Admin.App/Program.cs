@@ -6,8 +6,11 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 var environment = builder.Environment;
 
-// nacos server v1.x or v2.x
-builder.Services.AddNacosAspNet(configuration);
+if (configuration.GetValue<bool>("IsNacosEnabled"))
+{
+    // nacos server v1.x or v2.x
+    builder.Services.AddNacosAspNet(configuration);
+}
 
 // Add services to the container.
 var mvcBuilder = builder.Services
@@ -19,13 +22,8 @@ if (environment.IsDevelopment())
 
     builder.Services.AddLiveReload(config =>
     {
-        // optional - use config instead
         config.LiveReloadEnabled = true;
         config.ClientFileExtensions = ".cshtml,.css,.js,.htm,.html,.ts,.razor,.custom";
-        //config.WebSocketUrl = "ws://localhost:9700/admin/__livereload";
-        //config.LiveReloadScriptUrl = "/__livereloadscript";
-
-        //config.FolderToMonitor = "~/";
     });
 }
 
@@ -43,6 +41,8 @@ if (app.Environment.IsDevelopment())
 {
     app.UseLiveReload();
 }
+
+app.UsePathBase("/admin");
 
 //app.UseHttpsRedirection();
 app.UseStaticFiles();
