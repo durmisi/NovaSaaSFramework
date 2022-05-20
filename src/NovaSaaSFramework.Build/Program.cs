@@ -26,6 +26,7 @@ var githubPipeline = new GithubPipeline
         {
             RunsOn = BuildMachines.Windows2022,
 
+
             Steps = new List<GithubTask>
             {
                 new CheckoutTaskV2
@@ -46,12 +47,14 @@ var githubPipeline = new GithubPipeline
 
                 new RestoreTask
                 {
-                    Name = "Restoring Nuget Packages"
+                    Name = "Restoring Nuget Packages",
+                    Run = "dotnet restore NovaSaaSFramework.sln"
                 },
 
                 new DotNetBuildTask
                 {
-                    Name = "Building Project"
+                    Name = "Building Project",
+                    Run = "dotnet build NovaSaaSFramework.sln -c Release"
                 },
 
                 //new TestTask
@@ -67,4 +70,4 @@ var client = new ADotNetClient();
 
 client.SerializeAndWriteToFile(
     adoPipeline: githubPipeline,
-    path: "../../../../../../.github/workflows/dotnet.yml");
+    path: "../../../../../.github/workflows/dotnet.yml");

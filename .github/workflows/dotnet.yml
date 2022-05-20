@@ -18,6 +18,6 @@ jobs:
         dotnet-version: 6.0.300
         include-prerelease: true
     - name: Restoring Nuget Packages
-      run: dotnet restore
+      run: dotnet restore NovaSaaSFramework.sln
     - name: Building Project
-      run: dotnet build --no-restore
+      run: dotnet build NovaSaaSFramework.sln -c Release
