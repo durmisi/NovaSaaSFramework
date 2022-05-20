@@ -54,7 +54,7 @@ var githubPipeline = new GithubPipeline
                 new DotNetBuildTask
                 {
                     Name = "Building Project",
-                    Run = "dotnet build NovaSaaSFramework.sln -c Release"
+                    Run = "dotnet build --no-restore NovaSaaSFramework.sln -c Release"
                 },
 
                 //new TestTask
