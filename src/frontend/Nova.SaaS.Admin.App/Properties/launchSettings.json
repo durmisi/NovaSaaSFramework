@@ -12,7 +12,8 @@
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DOTNET_WATCH_RESTART_ON_RUDE_EDIT": "1"
       },
       "applicationUrl": "https://localhost:7063;http://localhost:5063",
       "dotnetRunMessages": true
@@ -21,14 +22,16 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DOTNET_WATCH_RESTART_ON_RUDE_EDIT": "1"
       }
     },
     "Docker": {
       "commandName": "Docker",
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DOTNET_WATCH_RESTART_ON_RUDE_EDIT": "1"
       },
       "publishAllPorts": true,
       "useSSL": true
@@ -39,6 +42,7 @@
       "launchUrl": "https://localhost:7063",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
+        "DOTNET_WATCH_RESTART_ON_RUDE_EDIT": "1",
         "ASPNETCORE_URLS": "https://localhost:7063;http://localhost:5063"
       },
       "distributionName": ""
