@@ -38,7 +38,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nova.SaaS.Admin.Api.Tests", "src\backend\Nova.SaaS.Admin.Api.Tests\Nova.SaaS.Admin.Api.Tests.csproj", "{54680E05-31C0-4A89-A907-E9ED71B4D639}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nova.SaaS.Admin.Api.Tests", "src\backend\Nova.SaaS.Admin.Api.Tests\Nova.SaaS.Admin.Api.Tests.csproj", "{54680E05-31C0-4A89-A907-E9ED71B4D639}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nova.SaaS.Admin.Api.Build", "src\backend\Nova.SaaS.Admin.Api.Build\Nova.SaaS.Admin.Api.Build.csproj", "{AFC06DA7-294D-4EB7-B022-FE354D628659}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -74,6 +76,10 @@ Global
 		{54680E05-31C0-4A89-A907-E9ED71B4D639}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54680E05-31C0-4A89-A907-E9ED71B4D639}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54680E05-31C0-4A89-A907-E9ED71B4D639}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFC06DA7-294D-4EB7-B022-FE354D628659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFC06DA7-294D-4EB7-B022-FE354D628659}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFC06DA7-294D-4EB7-B022-FE354D628659}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFC06DA7-294D-4EB7-B022-FE354D628659}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +99,7 @@ Global
 		{E69B6FF5-2E67-4685-9015-5B7FCF174B37} = {57D8125A-72BD-43DF-A235-9993A1AEA24C}
 		{5AD00172-A4E2-4219-945D-8208276156F7} = {C154BE03-6F0D-4E46-B987-7CDC5016294F}
 		{54680E05-31C0-4A89-A907-E9ED71B4D639} = {C154BE03-6F0D-4E46-B987-7CDC5016294F}
+		{AFC06DA7-294D-4EB7-B022-FE354D628659} = {C154BE03-6F0D-4E46-B987-7CDC5016294F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {99F1C28C-02CB-40AB-9915-903AD30385BF}

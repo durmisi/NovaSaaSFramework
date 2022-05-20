@@ -10,7 +10,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<InternalsVisibleTo Include="Nova.SaaS.Admin.Api.Tests"/>
+		<InternalsVisibleTo Include="Nova.SaaS.Admin.Api.Tests" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -32,5 +32,9 @@
 		<Content Update="appsettings.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include=".github\workflows\dotnet.yml" />
 	</ItemGroup>
 </Project>
