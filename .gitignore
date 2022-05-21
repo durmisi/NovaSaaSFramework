@@ -341,3 +341,4 @@ healthchecksdb
 
 docker/dist
 docker/dist/**
+/src/NovaSaasFramework.Provision/.env

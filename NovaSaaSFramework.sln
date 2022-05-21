@@ -42,6 +42,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nova.SaaS.Admin.Api.Tests",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NovaSaasFramework.Build", "src\NovaSaaSFramework.Build\NovaSaasFramework.Build.csproj", "{3060C237-B724-406D-A018-FA12426A1017}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NovaSaasFramework.Provision", "src\NovaSaasFramework.Provision\NovaSaasFramework.Provision.csproj", "{7E029CEE-0E24-4028-8D58-FB83726B49C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -80,6 +82,10 @@ Global
 		{3060C237-B724-406D-A018-FA12426A1017}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3060C237-B724-406D-A018-FA12426A1017}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3060C237-B724-406D-A018-FA12426A1017}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E029CEE-0E24-4028-8D58-FB83726B49C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E029CEE-0E24-4028-8D58-FB83726B49C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E029CEE-0E24-4028-8D58-FB83726B49C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E029CEE-0E24-4028-8D58-FB83726B49C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
