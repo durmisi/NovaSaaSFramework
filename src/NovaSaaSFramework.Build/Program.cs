@@ -65,7 +65,7 @@ var githubPipeline = new GithubPipeline
                 new TestTask
                 {
                     Name = "Running Tests",
-                    Run = "dotnet test NovaSaaSFramework.sln  --no-build --verbosity normal  --logger \"console; verbosity = detailed\""
+                    Run = "dotnet test NovaSaaSFramework.sln --no-build --verbosity normal"
                 }
             },
         }

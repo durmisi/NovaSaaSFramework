@@ -22,4 +22,4 @@ jobs:
     - name: Building Project
       run: dotnet build --no-restore NovaSaaSFramework.sln -c Release
     - name: Running Tests
-      run: dotnet test NovaSaaSFramework.sln  --no-build --verbosity normal  --logger "console; verbosity = detailed"
+      run: dotnet test NovaSaaSFramework.sln --no-build --verbosity normal
