@@ -14,9 +14,11 @@ namespace Nova.SaaS.Admin.Api.Tests
         {
             var (_, res) = await Setup.ApiClient.GETAsync<
                 Endpoints.Values.GetValues,
-                string>();
+                Endpoints.Values.GetValues.GetValuesResponse>();
 
-            Assert.NotEmpty(res);
+            Assert.NotNull(res);
+            Assert.NotEmpty(res?.RequestInfo);
+            Assert.NotEmpty(res?.Values);
         }
     }
 }

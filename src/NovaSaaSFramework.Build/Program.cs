@@ -62,10 +62,11 @@ var githubPipeline = new GithubPipeline
                     Run = "dotnet build --no-restore NovaSaaSFramework.sln -c Release"
                 },
 
-                //new TestTask
-                //{
-                //    Name = "Running Tests"
-                //}
+                new TestTask
+                {
+                    Name = "Running Tests",
+                    Run = "dotnet test NovaSaaSFramework.sln  --no-build --verbosity normal  --logger \"console; verbosity = detailed\""
+                }
             },
         }
     }

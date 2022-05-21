@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Nova.SaaS.Admin.Api.Endpoints.Values
 {
-    public class GetValues : EndpointWithoutRequest
+    public class GetValues : EndpointWithoutRequest<GetValues.GetValuesResponse>
     {
         private readonly ILogger<GetValues> _logger;
         private readonly string _baseUrl;
@@ -36,6 +36,7 @@ namespace Nova.SaaS.Admin.Api.Endpoints.Values
             Routes("/values");
             AllowAnonymous();
         }
+
 
         public override async Task HandleAsync(CancellationToken ct)
         {
@@ -68,13 +69,19 @@ namespace Nova.SaaS.Admin.Api.Endpoints.Values
                     .ToListAsync(cancellationToken: ct);
             }
 
-            var result = new
+            var result = new GetValuesResponse
             {
-                requestInfo = requestInfo,
+                RequestInfo = requestInfo,
                 Values = values
             };
 
             await SendAsync(result, 200, ct);
+        }
+
+        public class GetValuesResponse
+        {
+            public string RequestInfo { get; set; }
+            public IEnumerable<Value> Values { get; set; }
         }
 
     }
