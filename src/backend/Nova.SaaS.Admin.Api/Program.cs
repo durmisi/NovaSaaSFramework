@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Nova.Api.Core.ServiceDiscovery;
-
+using Nova.SaaS.Admin.Api.Services;
 using Serilog;
 using System.Reflection;
 
@@ -49,6 +49,8 @@ builder.Host
 
 builder.Services.AddFastEndpoints();
 
+builder.Services.AddTransient<IDataContextService, DataContextService>();
+
 var consulConfiguration = configuration.GetServiceConfig();
 if (consulConfiguration != null)
 {
@@ -61,6 +63,9 @@ var app = builder.Build();
 
 var logger = app.Services.GetRequiredService<ILogger<Program>>();
 logger.LogInformation("Application is starting...");
+
+var context = new NovaSaasAdminDbContextFactory(configuration).Create();
+context.Database.EnsureCreated();
 
 app.UseAuthorization();
 

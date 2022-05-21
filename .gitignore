@@ -342,3 +342,6 @@ healthchecksdb
 docker/dist
 docker/dist/**
 /src/NovaSaasFramework.Provision/.env
+/src/backend/Nova.SaaS.Admin.Api/novaadminapp.db-wal
+/src/backend/Nova.SaaS.Admin.Api/novaadminapp.db-shm
+/src/backend/Nova.SaaS.Admin.Api/novaadminapp.db
