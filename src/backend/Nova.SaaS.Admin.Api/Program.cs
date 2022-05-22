@@ -1,5 +1,6 @@
 global using FastEndpoints;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -7,10 +8,12 @@ using Microsoft.Extensions.Logging;
 using Nova.Api.Core.ServiceDiscovery;
 using Nova.SaaS.Admin.Api.Services;
 using Serilog;
+using System.Linq;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
+var environment = builder.Environment;
 
 builder.Host
     .UseSerilog((ctx, lc) => lc.ReadFrom.Configuration(ctx.Configuration))
@@ -65,7 +68,10 @@ var logger = app.Services.GetRequiredService<ILogger<Program>>();
 logger.LogInformation("Application is starting...");
 
 var context = new NovaSaasAdminDbContextFactory(configuration).Create();
-context.Database.EnsureCreated();
+if ((await context.Database.GetPendingMigrationsAsync()).Any())
+{
+    await context.Database.MigrateAsync();
+}
 
 app.UseAuthorization();
 

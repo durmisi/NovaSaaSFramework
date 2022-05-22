@@ -6,7 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 var environment = builder.Environment;
 
-if (configuration.GetValue<bool>("IsNacosEnabled"))
+bool inDocker = configuration.GetValue<string>("DOTNET_RUNNING_IN_CONTAINER") == "true";
+if (configuration.GetValue<bool>("IsNacosEnabled") || inDocker)
 {
     // nacos server v1.x or v2.x
     builder.Services.AddNacosAspNet(configuration);
