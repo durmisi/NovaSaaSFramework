@@ -2,38 +2,38 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using FastEndpoints;
-
+using Nova.SaaS.Admin.Api.Data;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace Nova.SaaS.Admin.Api.Tests
 {
 
-    public class ValuesEndpointsTests
+    public class ValuesEndpointsTests : TestBase
     {
-        private readonly ITestOutputHelper outputHelper;
-
         public ValuesEndpointsTests(ITestOutputHelper outputHelper)
+            :base(outputHelper)
         {
-            this.outputHelper = outputHelper;
+            
+        }
+
+
+        public override void Seed(NovaSaasAdminDbContext context)
+        {
+            //context.Values.Add(new Data.Models.Value()
+            //{
+            //    Id = System.Guid.NewGuid(),
+            //    Name = "Test Value",
+            //    Created = System.DateTime.Now
+            //});
+
+            //context.SaveChanges();
         }
 
         [Fact]
         public async Task GetValuesEndpointReturnsOK()
         {
-            //using (var context = Setup.CreateContext())
-            //{
-            //    context.Values.Add(new Data.Models.Value()
-            //    {
-            //        Id = System.Guid.NewGuid(),
-            //        Name = "Test Value",
-            //        Created = System.DateTime.Now
-            //    });
-
-            //    context.SaveChanges();
-            //}
-
-            var (_, res) = await Setup.GetClient(outputHelper).GETAsync<
+            var (_, res) = await base.GetClient().GETAsync<
                 Endpoints.Values.GetValues,
                 Endpoints.Values.GetValues.GetValuesResponse>();
 
